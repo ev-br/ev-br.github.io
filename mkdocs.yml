@@ -1,0 +1,15 @@
+site_name: Evgeni Burovski
+theme:
+  name: material
+  hide:
+    - footer
+nav:
+    - 'index.md'
+    - 'Teaching materials':
+        - teaching/num_meth.md
+        - teaching/104.md
+        - teaching/373.md
+        - teaching/481.md
+    - 'On the web': 'links.md'
+plugins:
+
