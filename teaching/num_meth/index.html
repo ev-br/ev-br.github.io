@@ -1,0 +1,1020 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Numerical methods - Evgeni Burovski</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.975780f9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#numerical-methods" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Evgeni Burovski" class="md-header__button md-logo" aria-label="Evgeni Burovski" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Evgeni Burovski
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Numerical methods
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Evgeni Burovski" class="md-nav__button md-logo" aria-label="Evgeni Burovski" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Evgeni Burovski
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Evgeni Burovski
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Teaching materials
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Teaching materials" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Teaching materials
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Numerical methods
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Numerical methods
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-notes" class="md-nav__link">
+    Lecture notes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#numerical-linear-algebra" class="md-nav__link">
+    Numerical linear algebra
+  </a>
+  
+    <nav class="md-nav" aria-label="Numerical linear algebra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#matrix-decompositions-eigenvalue-problem" class="md-nav__link">
+    Matrix decompositions. Eigenvalue problem.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systems-of-linear-equations" class="md-nav__link">
+    Systems of linear equations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-matrices-of-special-structure" class="md-nav__link">
+    (Some) matrices of special structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qr-factorization" class="md-nav__link">
+    QR factorization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#svd-factorization-solving-linear-systems-in-the-least-squares-sense" class="md-nav__link">
+    SVD factorization. Solving linear systems in the least-squares sense.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iterative-methods-for-linear-systems" class="md-nav__link">
+    Iterative methods for linear systems
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nonlinear-algebraic-equations-and-systems-of-equations" class="md-nav__link">
+    Nonlinear algebraic equations and systems of equations.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpolation-and-approximation-of-data" class="md-nav__link">
+    Interpolation and approximation of data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculus" class="md-nav__link">
+    Calculus
+  </a>
+  
+    <nav class="md-nav" aria-label="Calculus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numerical-derivatives" class="md-nav__link">
+    Numerical derivatives
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#numerical-integraion-quadratures" class="md-nav__link">
+    Numerical integraion: quadratures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fredholm-integral-equations" class="md-nav__link">
+    Fredholm integral equations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordinary-differential-equations" class="md-nav__link">
+    Ordinary differential equations
+  </a>
+  
+    <nav class="md-nav" aria-label="Ordinary differential equations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-value-problem-for-odes" class="md-nav__link">
+    Initial value problem for ODEs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundary-value-problems-for-odes" class="md-nav__link">
+    Boundary value problems for ODEs.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-differential-equations" class="md-nav__link">
+    Partial differential equations
+  </a>
+  
+    <nav class="md-nav" aria-label="Partial differential equations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#non-stationary-problems" class="md-nav__link">
+    Non-stationary problems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statitionary-problems" class="md-nav__link">
+    Statitionary problems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#higher-dimensions" class="md-nav__link">
+    Higher dimensions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monte-carlo-methods" class="md-nav__link">
+    Monte Carlo methods
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../104/" class="md-nav__link">
+        Thermal Properties of Matter
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../373/" class="md-nav__link">
+        Intro to Many-Body Physics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../481/" class="md-nav__link">
+        Magnetism
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../links/" class="md-nav__link">
+        On the web
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lecture-notes" class="md-nav__link">
+    Lecture notes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#numerical-linear-algebra" class="md-nav__link">
+    Numerical linear algebra
+  </a>
+  
+    <nav class="md-nav" aria-label="Numerical linear algebra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#matrix-decompositions-eigenvalue-problem" class="md-nav__link">
+    Matrix decompositions. Eigenvalue problem.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#systems-of-linear-equations" class="md-nav__link">
+    Systems of linear equations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#some-matrices-of-special-structure" class="md-nav__link">
+    (Some) matrices of special structure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qr-factorization" class="md-nav__link">
+    QR factorization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#svd-factorization-solving-linear-systems-in-the-least-squares-sense" class="md-nav__link">
+    SVD factorization. Solving linear systems in the least-squares sense.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iterative-methods-for-linear-systems" class="md-nav__link">
+    Iterative methods for linear systems
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nonlinear-algebraic-equations-and-systems-of-equations" class="md-nav__link">
+    Nonlinear algebraic equations and systems of equations.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpolation-and-approximation-of-data" class="md-nav__link">
+    Interpolation and approximation of data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calculus" class="md-nav__link">
+    Calculus
+  </a>
+  
+    <nav class="md-nav" aria-label="Calculus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#numerical-derivatives" class="md-nav__link">
+    Numerical derivatives
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#numerical-integraion-quadratures" class="md-nav__link">
+    Numerical integraion: quadratures
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fredholm-integral-equations" class="md-nav__link">
+    Fredholm integral equations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordinary-differential-equations" class="md-nav__link">
+    Ordinary differential equations
+  </a>
+  
+    <nav class="md-nav" aria-label="Ordinary differential equations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-value-problem-for-odes" class="md-nav__link">
+    Initial value problem for ODEs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundary-value-problems-for-odes" class="md-nav__link">
+    Boundary value problems for ODEs.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-differential-equations" class="md-nav__link">
+    Partial differential equations
+  </a>
+  
+    <nav class="md-nav" aria-label="Partial differential equations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#non-stationary-problems" class="md-nav__link">
+    Non-stationary problems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statitionary-problems" class="md-nav__link">
+    Statitionary problems
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#higher-dimensions" class="md-nav__link">
+    Higher dimensions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monte-carlo-methods" class="md-nav__link">
+    Monte Carlo methods
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="numerical-methods">Numerical methods</h1>
+<p>This is a 3/4 of a year long Numerical analysis course I was teaching at HSE University 
+to 3rd year Applied maths students in 2017-2022. A short version of this course 
+was formerly offered as the <em>Introduction to numerical analysis</em> MOOC on Coursera.</p>
+<h2 id="lecture-notes">Lecture notes</h2>
+<p>Note that these slides are basically drafts and are missing sketches, drawings and
+other handwritten notes which I was adding in real time in class. </p>
+<h2 id="introduction">Introduction</h2>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/intro/uncertainties.pdf">The subject of numerical analysis. Review of elementary theory of uncertainties.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/intro/stability.pdf">Numerical stability. Condition number. Stable and unstable algorithms. </a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/intro/machine_arithmetics.pdf">Machine arithmerics.</a></p>
+</li>
+</ul>
+<h2 id="numerical-linear-algebra">Numerical linear algebra</h2>
+<h3 id="matrix-decompositions-eigenvalue-problem">Matrix decompositions. Eigenvalue problem.</h3>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/eigenvalues/eigv_intro.pdf">Matrix decompositions. Eigenvalue problem. Characteristic polynomial of a matrix. Localization of eigenvalues, Gershgorin theorems.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/eigenvalues/power_iteration.pdf">Iterative eigenvalue algorithms. Power iteration, Krylov subspaces. Inverse iteration.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/eigenvalues/QR_iteration.pdf">Computing the full spectrum of a matrix. Schur factorization. QR iteration.</a></p>
+</li>
+</ul>
+<h3 id="systems-of-linear-equations">Systems of linear equations</h3>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/linalg/gauss.pdf">Systems of linear equations. Cramer's rule and why it is not usable. Gaussian elimination.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/linalg/lu.pdf">LU factorization. Pivoting.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/linalg/m_v_norms.pdf">Sensitivity of a linear system. Vector and matrix norms. Condition number of a matrix.</a></p>
+</li>
+</ul>
+<h3 id="some-matrices-of-special-structure">(Some) matrices of special structure</h3>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/linalg/cholesky.pdf">Cholesky factorization for positive definite matrices.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/linalg/tridiag.pdf">Banded and trigiagonal matrices. Thomas algorithm.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/linalg/SM.pdf">Rank-one updates. Sherman-Morrison formula.</a></p>
+</li>
+</ul>
+<h3 id="qr-factorization">QR factorization</h3>
+<ul>
+<li><a href="../../assets/num_meth/linalg/qr.pdf">QR factorization of a matrix. Constructing the QR factorization: Householder reflections and Givens rotations.</a></li>
+</ul>
+<h3 id="svd-factorization-solving-linear-systems-in-the-least-squares-sense">SVD factorization. Solving linear systems in the least-squares sense.</h3>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/linalg/svd.pdf">SVD factorization. Singular values and singular vectors. Properties of SVD. Invariant subspaces. Wigner-Eckhart theorem. Low-rank approximations.</a></p>
+</li>
+<li>
+<p>Detour: Interpolation and approximation of data. Basis functions. <a href="../../assets/num_meth/approx_interp/approx_interp.pdf">Solving linear systems in the least-squares sense. Linear least squares. Normal equations, solutions via QR and SVD factorizations.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/linalg/pinv.pdf">Under- and over-determined linear systems. Moore-Penrose pseudoinverse. Minimum norm solution. Pseudoinverse via SVD.</a></p>
+</li>
+</ul>
+<h2 id="iterative-methods-for-linear-systems">Iterative methods for linear systems</h2>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/linalg_iterative/simple_iteration_Jacobi.pdf">Large-scale linear systems. Sparse matrices. Iterative methods for linear systems. Jacobi iteration.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/linalg_iterative/Seidel_SOR.pdf">Seidel iteration. Successive over-relaxation.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/linalg_iterative/iterative_linalg_3.pdf">Canonical form of iterative methods. Convergence criteria. Variational approaches: minimum residual method.</a>
+non</p>
+</li>
+</ul>
+<h2 id="nonlinear-algebraic-equations-and-systems-of-equations">Nonlinear algebraic equations and systems of equations.</h2>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/nonlinear_eq/nonlinear_eq.pdf">Nonlinear root-finding. Fixed-point iteration. Analysis of convergence. <em>A priori</em> and <em>a posertiori</em> error estimates. Newton iteration and its variants.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/nonlinear_eq/polynomials_companion_matrix.pdf">Roots of polynomials. Companion matrix of a polynomial. Reduction to the eigenvalue problem</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/nonlinear_eq/systems_of_nonlinear_equations.pdf">Systems of non-linear equations. Relation to numerical mininimzation problems. Linear and nonlinear iterations.</a></p>
+</li>
+</ul>
+<h2 id="interpolation-and-approximation-of-data">Interpolation and approximation of data</h2>
+<ul>
+<li>
+<p>Interpolation and approximation of data. Basis functions. <a href="../../assets/num_meth/approx_interp/approx_interp.pdf">Solving linear systems in the least-squares sense. Linear least squares. Normal equations, solutions via QR and SVD factorizations.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/approx_interp/approx_interp_2.pdf">Interpolation and approximation of data. Basis functions. Gram matrix. A global polynomial interpolant. Lagrange interpolating polynomial. Runge phenomenon. Chebyshev nodes.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/approx_interp/interp_splines.pdf">Spline interpolation. Cubic splines. Monotone interpolants.</a></p>
+</li>
+</ul>
+<h2 id="calculus">Calculus</h2>
+<h3 id="numerical-derivatives">Numerical derivatives</h3>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/derivatives/derivatives.pdf">Finite-difference formulas. Numerical stability, sources of error. Optimal FD step</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/derivatives/derivatives_2.pdf">Richardson extrapolation. Neville algorithm. Complex-step finite differences.</a></p>
+</li>
+<li><a href="../../assets/num_meth/derivatives/derivatives_algo.pdf">Algorithmic differentiation. Dual numbers.</a></li>
+</ul>
+<h3 id="numerical-integraion-quadratures">Numerical integraion: quadratures</h3>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/integrals/integrals.pdf">Quadrature formulas. Elementary quadratures, rates of convergence. Integrable singularities.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/integrals/integrals_2.pdf">Newton-Cotes formulas. Nodes and weights. Gaussian quadratures.</a></p>
+</li>
+</ul>
+<h3 id="fredholm-integral-equations">Fredholm integral equations</h3>
+<ul>
+<li><a href="../../assets/num_meth/fredholm/fredholm_equations.slides.html">Fredholm integral equations. Nystrom method.</a></li>
+</ul>
+<h2 id="ordinary-differential-equations">Ordinary differential equations</h2>
+<h3 id="initial-value-problem-for-odes">Initial value problem for ODEs</h3>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/ode_ivp/ode_ivp.pdf">Discretization of IVPs. Euler-like methods. Explicit and implicit methods. Approximation and convergence. Predictor-corrector approaches, Runge-Kutta methods. Asymptototic stability. Absolutely and conditionally stable methods. Stiff systems.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/ode_ivp/ode_ivp_2.pdf">Linear multistep methods (a family of). Zero-stability.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/ode_ivp/ode_ivp_3.pdf">Stability of numerical approaches to solving discretized IVP. Dahlquist test equation. A-stability.</a></p>
+</li>
+</ul>
+<h3 id="boundary-value-problems-for-odes">Boundary value problems for ODEs.</h3>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/ode_bvp/bvp.pdf">Two-point boundary-value problems for 2nd order ODEs. Discretization. Reduction to linear algebraic systems. Convergence, approximation, stability.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/ode_bvp/bvp_proj.pdf">Variational approaches: Ritz method. Galerkin projectional approach. The road towards FEM.</a></p>
+</li>
+</ul>
+<h2 id="partial-differential-equations">Partial differential equations</h2>
+<h3 id="non-stationary-problems">Non-stationary problems</h3>
+<ul>
+<li>
+<p><a href="../../assets/num_meth/pde/1D_parabolic.pdf">Discretization of PDEs: 1D parabolic equation. Stencils. Explicit and implicit schemes. von Neumann stability analysis. Absolute/conditional stability.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/pde/nonlin.pdf">Non-constant coefficients and non-linear equations.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/pde/1D_wave_eq.pdf">1D wave equation.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/pde/2D_Poisson.pdf">Flux-conservative equations, relation to the wave equation. The failure of the naive FCTS scheme, The Lax construction, numerical dissipation. Improvements to the Lax scheme: Lax-Wendroff variants, staggered leapfrog.</a></p>
+</li>
+</ul>
+<h3 id="statitionary-problems">Statitionary problems</h3>
+<ul>
+<li><a href="../../assets/num_meth/pde/flux_conservative_eq.pdf">Boundary value problem for the 2D Poisson equation. The need for sparse linear algebra. Seidel-like iterations. 1D Fourier + Thomas algorithm.</a></li>
+</ul>
+<h3 id="higher-dimensions">Higher dimensions</h3>
+<ul>
+<li><a href="../../assets/num_meth/pde/multidim_adi.pdf">(2+1)D diffusion equation. Operator splitting. Alternating-direction implicit (ADI) schemes.</a></li>
+</ul>
+<h2 id="monte-carlo-methods">Monte Carlo methods</h2>
+<ul>
+<li>
+<p>Motivation: integration in higher dimensions. <a href="../../assets/num_meth/mc/highD_integrals_and_MC.slides.html">Monte Carlo integration. Buffon's needle. Quasi-random sequences (Sobol, Halton). Non-uniform sampling.</a></p>
+</li>
+<li>
+<p><a href="../../assets/num_meth/mc/MCMC.slides.html">Markov chain Monte Carlo. Metropolis algorithm.</a></p>
+</li>
+</ul>
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" hidden>
+      
+        
+        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Evgeni Burovski" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Evgeni Burovski
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../104/" class="md-footer__link md-footer__link--next" aria-label="Next: Thermal Properties of Matter" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Thermal Properties of Matter
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      
+    
+    
+  </body>
+</html>
